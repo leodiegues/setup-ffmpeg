@@ -10,8 +10,8 @@ if [ $RUNNER_OS = macOS ]; then
       exit 1
     else
       echo "https://www.osxexperts.net/ffmpeg${version}arm.zip"
-      curl -H "User-Agent: Mozilla/5.0" -L -o FFmpeg.zip https://www.osxexperts.net/ffmpeg${version}arm.zip
-      curl -H "User-Agent: Mozilla/5.0" -L -o FFprobe.zip https://www.osxexperts.net/ffprobe${version}arm.zip
+      curl -H "User-Agent: Mozilla/5.0" -v -L -o FFmpeg.zip https://www.osxexperts.net/ffmpeg${version}arm.zip
+      curl -H "User-Agent: Mozilla/5.0" -v -L -o FFprobe.zip https://www.osxexperts.net/ffprobe${version}arm.zip
     fi
   else
     ext=7z
