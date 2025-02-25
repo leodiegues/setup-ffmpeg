@@ -25,6 +25,7 @@ if [ $RUNNER_OS = macOS ]; then
   7z e FFmpeg.$ext ffmpeg -oFFmpeg
   7z e FFprobe.$ext ffprobe -oFFmpeg
   rm FFmpeg.$ext FFprobe.$ext
+  echo ls -a FFmpeg
 else
   if [ $RUNNER_ARCH = ARM64 ]; then arch=linuxarm64; else arch=linux64; fi
   if [ $version = master ]; then filename=ffmpeg-master-latest-$arch-gpl.tar.xz; else filename=ffmpeg-n$version-latest-$arch-gpl-$version.tar.xz; fi
