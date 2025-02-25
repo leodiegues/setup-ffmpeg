@@ -1,7 +1,8 @@
 #!/bin/sh
 set -eu
-echo "::group::Downloading FFmpeg $version for $RUNNER_OS $RUNNER_ARCH"
 echo ls -a
+mkdir FFmpeg
+echo "::group::Downloading FFmpeg $version for $RUNNER_OS $RUNNER_ARCH"
 mkdir FFmpeg
 if [ $RUNNER_OS = macOS ]; then
   if [ $RUNNER_ARCH = ARM64 ]; then
