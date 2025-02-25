@@ -9,6 +9,8 @@ if [ $RUNNER_OS = macOS ]; then
       echo ::error::OSXExperts.NET currently does not have macOS ARM64 master builds.
       exit 1
     else
+      echo "https://www.osxexperts.net/ffmpeg${version}arm.zip"
+      echo "https://www.osxexperts.net/ffprobe${version}arm.zip"
       wget -qO FFmpeg.zip https://www.osxexperts.net/ffmpeg${version}arm.zip
       wget -qO FFprobe.zip https://www.osxexperts.net/ffprobe${version}arm.zip
     fi
