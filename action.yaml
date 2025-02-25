@@ -58,7 +58,9 @@ runs:
       if: (runner.os == 'Linux' || runner.os == 'macOS') && ! steps.cache.outputs.cache-hit
       shell: bash
       working-directory: ${{ runner.temp }}
-      run: $GITHUB_ACTION_PATH/scripts/download/Unix-like.sh
+      run: |
+        chmod +x $GITHUB_ACTION_PATH/scripts/download/Unix-like.sh
+        $GITHUB_ACTION_PATH/scripts/download/Unix-like.sh
       env:
         version: ${{ steps.version-unix-like.outputs.version }}
         

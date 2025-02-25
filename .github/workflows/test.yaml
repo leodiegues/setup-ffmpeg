@@ -40,7 +40,7 @@ jobs:
             
     steps:
       - name: Setup FFmpeg using setup-ffmpeg
-        uses: AnimMouse/setup-ffmpeg@main
+        uses: leodiegues/setup-ffmpeg@macos-cache-miss
         with:
           version: ${{ matrix.version }}
           
