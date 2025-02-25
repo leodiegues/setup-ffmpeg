@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 echo ::group::Downloading FFmpeg $version for $RUNNER_OS $RUNNER_ARCH
-mkdir FFmpeg
+mkdir -p FFmpeg
 if [ $RUNNER_OS = macOS ]; then
   if [ $RUNNER_ARCH = ARM64 ]; then
     ext=zip
