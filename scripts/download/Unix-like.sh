@@ -1,28 +1,19 @@
 #!/bin/sh
 set -eu
-echo ls -a
-mkdir FFmpeg
 echo "::group::Downloading FFmpeg $version for $RUNNER_OS $RUNNER_ARCH"
 mkdir FFmpeg
 if [ $RUNNER_OS = macOS ]; then
   if [ $RUNNER_ARCH = ARM64 ]; then
     ext=zip
-    echo "Setting extension to 'zip'"
     if [ $version = master ]; then
       echo "::error::OSXExperts.NET currently does not have macOS ARM64 master builds."
       exit 1
     else
-      echo "Downloading FFmpeg from OSXExperts.NET"
-      echo "Download URLs:"
-      echo "https://www.osxexperts.net/ffmpeg${version}arm.zip"
-      echo "https://www.osxexperts.net/ffprobe${version}arm.zip"
-      wget -qO FFmpeg.zip https://www.osxexperts.net/ffmpeg${version}arm.zip
-      wget -qO FFprobe.zip https://www.osxexperts.net/ffprobe${version}arm.zip
+      curl -L -o FFmpeg.zip https://www.osxexperts.net/ffmpeg${version}arm.zip
+      curl -L -o FFprobe.zip https://www.osxexperts.net/ffprobe${version}arm.zip
     fi
   else
     ext=7z
-    echo "Setting extension to '7z'"
-    echo "Downloading FFmpeg from Evermeet.cx"
     if [ $version = master ]; then
       wget -qO FFmpeg.7z https://evermeet.cx/ffmpeg/get
       wget -qO FFprobe.7z https://evermeet.cx/ffmpeg/get/ffprobe
@@ -31,10 +22,8 @@ if [ $RUNNER_OS = macOS ]; then
       wget -qO FFprobe.7z https://evermeet.cx/ffprobe/ffprobe-$version.7z
     fi
   fi
-  echo "Extracting FFmpeg and FFprobe"
   7z e FFmpeg.$ext ffmpeg -oFFmpeg
   7z e FFprobe.$ext ffprobe -oFFmpeg
-  echo "Removing FFmpeg and FFprobe original files"
   rm FFmpeg.$ext FFprobe.$ext
 else
   if [ $RUNNER_ARCH = ARM64 ]; then arch=linuxarm64; else arch=linux64; fi
