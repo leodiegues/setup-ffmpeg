@@ -2,13 +2,10 @@
 set -eu
 echo ::group::Downloading FFmpeg $version for $RUNNER_OS $RUNNER_ARCH
 mkdir FFmpeg
-if [ $RUNNER_OS = macOS ]
-then
-  if [ $RUNNER_ARCH = ARM64 ]
-  then
+if [ $RUNNER_OS = macOS ]; then
+  if [ $RUNNER_ARCH = ARM64 ]; then
     ext=zip
-    if [ $version = master ]
-    then
+    if [ $version = master ]; then
       echo ::error::OSXExperts.NET currently does not have macOS ARM64 master builds.
       exit 1
     else
@@ -17,8 +14,7 @@ then
     fi
   else
     ext=7z
-    if [ $version = master ]
-    then
+    if [ $version = master ]; then
       wget -qO FFmpeg.7z https://evermeet.cx/ffmpeg/get
       wget -qO FFprobe.7z https://evermeet.cx/ffmpeg/get/ffprobe
     else
@@ -34,4 +30,6 @@ else
   if [ $version = master ]; then filename=ffmpeg-master-latest-$arch-gpl.tar.xz; else filename=ffmpeg-n$version-latest-$arch-gpl-$version.tar.xz; fi
   wget -qO- $GITHUB_SERVER_URL/BtbN/FFmpeg-Builds/releases/download/latest/$filename | tar -xJC FFmpeg --strip-components 2 --no-anchored ffmpeg ffprobe
 fi
+echo ls -a FFmpeg
 echo ::endgroup::
+
